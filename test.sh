@@ -5,14 +5,25 @@ test_calculator()
     op="$2"
     num2="$3"
     expected_output="$4"
-    actual_output=$(./main "$num1" "$op" "num2")
+    actual_output=$(./main.o "$num1" "$op" "$num2")
 
     if [ "$actual_output" -eq "$expected_output" ]; then 
         echo "test passed"
     else 
-        echo "failed, $actual_output, $expected_output, $num1, $num2, $op"
+        echo "failed, $num1 $op $num2 = $actual_output, not $expected_output"
+        exit 1
     fi
 
 }
 
 test_calculator "10" "+" "2" "12"
+test_calculator "1" "*" "1" "1"
+test_calculator "10" "+" "2" "12"
+test_calculator "10" "*" "10" "100"
+test_calculator "2" "/" "2" "1"
+test_calculator "10" "/" "2" "5"
+test_calculator "106" "/" "2" "53"
+test_calculator "10" "/" "2" "5"
+test_calculator "10" "/" "2" "5"
+test_calculator "12" "*" "12" "144"
+test_calculator "0" "/" "2" "0"
